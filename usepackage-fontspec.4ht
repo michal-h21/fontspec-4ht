@@ -39,22 +39,23 @@
  {
   % \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N #1 _family } {#2} {#3}
   \keys_set_known:nn {fontspec4ht}{#4}
-  \typeout{**********************}
-  \typeout{skript: \unexpanded{1: #1 2:#2 3:#3 4:#4}}
-  \typeout{**********************}
   \seq_put_right:Nn \fontspec_ht_fontfamilies {#3}
   \use:x
    {
     \exp_not:N \DeclareRobustCommand \exp_not:N #1
      {
-      % \exp_not:N \fontfamily { \use:c {g__fontspec_ \cs_to_str:N #1 _family} }
-      % \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
-      % \exp_not:N \selectfont
+       \relax
      }
    }
  }
  % \tl_set:Nn \g_fontspec_encoding_tl{T1}
  %  \tl_set_eq:NN \encodingdefault\g_fontspec_encoding_tl
+ \DeclareDocumentCommand \addfontfeatures {m}
+ {
+   \keys_set_known:nn {fontspec4ht}{#1}
+   \typeout{Add font features}
+ }
+ \cs_set_eq:NN \addfontfeature \addfontfeatures
   \global\expandafter\let\csname ver@fontenc.sty\endcsname\relax
   \global\expandafter\let\csname opt@fontenc.sty\endcsname\relax
 }
