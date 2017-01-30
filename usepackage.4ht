@@ -57,7 +57,11 @@
 \:dontusepackage{savetrees}
 \fi
 \def\:temp{fontspec}\ifx \@currname\:temp
-\input usepackage-fontspec.4ht
+  \ifdefined\fontspec
+    \:dontusepackage{fontspec}
+  \else 
+    \input usepackage-fontspec.4ht
+  \fi
 \fi
 
 
