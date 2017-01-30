@@ -11,65 +11,27 @@
   \keys_define:nn {fontspec4ht}{
     Script .code:n = \seq_put_right:Nn \fontspec_ht_scripts {#1}
   }
-  % \cs_gset:Nn \__fontspec_save_family:nn {
-  %   \tl_set:Nn\rmdefault {lmr}
-  %   \tl_set:Nn\sfdefault {lmss}
-  %   \tl_set:Nn\ttdefault {lmtt}
-  %   \tl_set:Nn \g_fontspec_encoding_tl {T1}
-  % \ignorespaces}
-  % \cs_gset:Nn  \__fontspec_select_font_family:nn 
-  % {
-  % \group_begin:
-  % \__fontspec_font_suppress_not_found_error:
-  % \typeout{ojojojo: #1, #2}
-  % \__fontspec_init:
-
-  % \__fontspec_sanitise_fontname:Nn \l_fontspec_fontname_tl    {#2}
-  % % \__fontspec_sanitise_fontname:Nn \l__fontspec_fontname_up_tl {#2}
-  % % \__fontspec_sanitise_fontname:Nn \l__fontspec_basename_tl          {#2}
-
-  % % \__fontspec_if_detect_external:nT {#2}
-  % %  { \keys_set:nn {fontspec-preparse-external} {Path} }
-
-  % % \__fontspec_init_ttc:n {#2}
-  % % \__fontspec_load_external_fontoptions:Nn \l_fontspec_fontname_tl {#2}
-
-  % % \__fontspec_extract_all_features:n {#1}
-  % % \tl_set:Nx \l__fontspec_fontid_tl { \tl_to_str:N \l_fontspec_fontname_tl-:-\tl_to_str:N \l__fontspec_all_features_clist }
+\cs_set:Nn \fontspec_set_family:Nnn
+ {
+  % \tl_set:Nn \l__fontspec_family_label_tl { #1 }
+  % \__fontspec_select_font_family:nn {#2}{#3}
+  \tl_set_eq:NN #1 \l_fontspec_family_tl
+ }
 
 
-  % % \__fontspec_preparse_features:
-  % % \__fontspec_load_font:
-  % % \__fontspec_set_scriptlang:
-  % % \__fontspec_get_features:Nn \l__fontspec_rawfeatures_sclist {}
-  % % \bool_set_false:N \l__fontspec_firsttime_bool
-
-  % % \__fontspec_save_family_needed:nTF {#2}
-  %  {
-  %    % \__fontspec_save_family:nn {#1} {#2}
-  %  }
-  %  {
-  %  }
-  % \group_end:
-  %   % \fontspec_set_family:Nnn \f@family {#1} {#2}
-  %   % \selectfont
-  %   \ignorespaces
-  % }
+\prg_set_conditional:Nnn \fontspec_if_fontspec_font: {TF,T,F}
+{
+  \typeout{if fontspec font}
+  \prg_return_false:
+}
 
 \DeclareDocumentCommand \setmainfont { O{} m O{} }
  {
-  % \fontspec_set_family:Nnn \g__fontspec_rmfamily_family {#1,#3} {#2}
-  % \tl_set_eq:NN \rmdefault \g__fontspec_rmfamily_family
   \use:x { \exp_not:n { \DeclareRobustCommand \rmfamily }
    {
-    % \exp_not:N \fontencoding { \l__fontspec_nfss_enc_tl }
-    % \exp_not:N \fontfamily { \g__fontspec_rmfamily_family }
-    % \exp_not:N \selectfont
     \relax
    }
   }
-  % \str_if_eq_x:nnT {\familydefault} {\rmdefault}
-  %   { \tl_set_eq:NN \encodingdefault \l__fontspec_nfss_enc_tl }
   \normalfont
   \ignorespaces
  }
