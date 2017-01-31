@@ -15,18 +15,22 @@
  {
   % \tl_set:Nn \l__fontspec_family_label_tl { #1 }
   % \__fontspec_select_font_family:nn {#2}{#3}
-  \tl_set_eq:NN #1 \l_fontspec_family_tl
+  % \tl_set_eq:NN #1 \l_fontspec_family_tl
+  \def#1{\relax}
  }
 
 
 \prg_set_conditional:Nnn \fontspec_if_fontspec_font: {TF,T,F}
 {
-  \typeout{if fontspec font}
   \prg_return_false:
 }
 
 \DeclareDocumentCommand \setmainfont { O{} m O{} }
  {
+   % Optional argument can be in both first and third parameter
+  \keys_set_known:nn {fontspec4ht}{#1}
+  \keys_set_known:nn {fontspec4ht}{#3}
+  \seq_put_right:Nn \fontspec_ht_fontfamilies {#2}
   \use:x { \exp_not:n { \DeclareRobustCommand \rmfamily }
    {
     \relax
