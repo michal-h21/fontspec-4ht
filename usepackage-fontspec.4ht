@@ -39,6 +39,19 @@
   \normalfont
   \ignorespaces
  }
+
+ % define aliases for other user commands
+\cs_set_eq:NN \fontspec\setmainfont
+\cs_set_eq:NN \setsansfont\setmainfont
+\cs_set_eq:NN \setmonofont\setmainfont
+\cs_set_eq:NN \setromanfont\setmainfont
+\cs_set_eq:NN \setmathrm\setmainfont
+\cs_set_eq:NN \setmathsf\setmainfont
+\cs_set_eq:NN \setboldmathrm\cs_set_eq:NN
+\cs_set_eq:NN \setmatht\cs_set_eq:NN
+
+
+
 \DeclareDocumentCommand \newfontfamily { m O{} m O{} }
  {
   % \fontspec_set_family:cnn { g__fontspec_ \cs_to_str:N #1 _family } {#2} {#3}
